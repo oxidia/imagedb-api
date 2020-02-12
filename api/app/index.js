@@ -3,10 +3,12 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const logger = require('morgan');
 require('dotenv').config();
 
 const appMiddlewares = require('./middlewares/app');
 
+app.use(logger('dev'));
 app.use(cors());
 
 app.use(express.urlencoded({extended: true}));
