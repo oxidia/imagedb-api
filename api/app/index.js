@@ -5,6 +5,12 @@ const app = express();
 const cors = require('cors');
 const logger = require('morgan');
 require('dotenv').config();
+const mongodbLogInfo = require('./utils/app').logInfo('mongodb');
+
+require('./config/mongo')
+  .connect()
+  .then(() => mongodbLogInfo('Database connected'))
+  .catch(err => mongodbLogInfo(err.message));
 
 const appMiddlewares = require('./middlewares/app');
 
